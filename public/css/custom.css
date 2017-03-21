@@ -1,0 +1,21 @@
+.admin-users {
+	 border: 2px solid #dddddd;
+}
+
+.admin-users tr {
+	background-color: #fafafa;
+}
+
+.admin-users td {
+	vertical-align: middle !important;
+}
+
+.admin-users .form-group {
+	background-color: white; 
+	border-radius: 3%;
+	margin-bottom: 0px;
+}
+
+.admin-users select {
+	text-align-last: center;
+}
