@@ -70,6 +70,7 @@ app.get('/unlink/:provider', userController.ensureAuthenticated, userController.
 app.post('/auth/google', userController.authGoogle);
 app.get('/auth/google/callback', userController.authGoogleCallback);
 app.get('/users', userController.ensureAuthenticated, userController.usersGet);
+app.put('/user', userController.ensureAuthenticated, userController.updateLevel);
 
 
 app.get('/', function(req, res) {

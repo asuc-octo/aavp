@@ -49,7 +49,7 @@ angular.module('MyApp', ['ngRoute', 'satellizer'])
     $authProvider.signupUrl = '/signup';
     $authProvider.google({
       url: '/auth/google',
-      clientId: '631036554609-v5hm2amv4pvico3asfi97f54sc51ji4o.apps.googleusercontent.com'
+      clientId: '1045412941131-vgbpc026j6c0m4ihumqs78s5jm0p1907.apps.googleusercontent.com'
     });
 
     function skipIfAuthenticated($location, $auth) {
@@ -315,13 +315,19 @@ angular.module('MyApp')
         case 2: return 'warning';
         default: return 'danger';
       }
-  	}
+  	};
 
   	$scope.updateLevel = function(index) {
   		let user = $scope.users[index];
-
-  		console.log(level);
-  	}
+  		Admin.updateLevel(user).then(function(response) {
+          //do somethin
+        })
+        .catch(function(response) {
+          $scope.messages = {
+            error: Array.isArray(response.data) ? response.data : [response.data]
+          };
+        });
+  	};
 
     // $scope.profile = $rootScope.currentUser;
 
@@ -420,8 +426,11 @@ angular.module('MyApp')
 angular.module('MyApp')
   .factory('Admin', ["$http", function($http) {
     return {
-      getUsers: function(data) {
+      getUsers: function() {
         return $http.get('/users');
+      },
+      updateLevel: function(data) {
+        return $http.put('/user', data);
       }
     };
   }]);

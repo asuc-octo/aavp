@@ -95,7 +95,6 @@ exports.signupPost = function(req, res, next) {
    * Get all users, given correct permission level
    */
 exports.usersGet = function(req, res, next) {
-  console.log(req.user.level);
   if(!req.user || req.user.level == undefined || req.user.level < 2) {
     return res.status(401).send({ msg: 'Unauthorized' });
   }
@@ -111,6 +110,26 @@ exports.usersGet = function(req, res, next) {
   });
 };
 
+
+/**
+ * PUT /userLevel
+ * Update user level (if admin)
+ */
+exports.updateLevel = function(req, res, next) {
+  if(!req.user || req.user.level == undefined || req.user.level < 2) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+  User.findById(req.body._id, function(err, user) {
+    if(err) {
+      console.log(err);
+    } else {
+      user.level = req.body.level;
+      user.save(function(err) {
+          res.send({ msg: 'User level updated' });
+      })
+    }
+  });
+};
 
 
 /**
@@ -317,7 +336,6 @@ exports.authGoogle = function(req, res) {
     redirect_uri: req.body.redirectUri,
     grant_type: 'authorization_code'
   };
-
   // Step 1. Exchange authorization code for access token.
   request.post(accessTokenUrl, { json: true, form: params }, function(err, response, token) {
     var accessToken = token.access_token;
@@ -325,9 +343,11 @@ exports.authGoogle = function(req, res) {
 
     // Step 2. Retrieve user's profile information.
     request.get({ url: peopleApiUrl, headers: headers, json: true }, function(err, response, profile) {
+      console.log(profile.error);
       if (profile.error) {
-        return res.status(500).send({ message: profile.error.message });
+        return res.status(500).send({ message: 'I IS KILL' });
       }
+      console.log("step 3a");
       // Step 3a. Link accounts if user is authenticated.
       if (req.isAuthenticated()) {
         User.findOne({ google: profile.sub }, function(err, user) {
@@ -345,6 +365,7 @@ exports.authGoogle = function(req, res) {
           });
         });
       } else {
+        console.log("step 3b");
         // Step 3b. Create a new user account or return an existing one.
         User.findOne({ google: profile.sub }, function(err, user) {
           if (user) {

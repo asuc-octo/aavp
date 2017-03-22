@@ -26,13 +26,19 @@ angular.module('MyApp')
         case 2: return 'warning';
         default: return 'danger';
       }
-  	}
+  	};
 
   	$scope.updateLevel = function(index) {
   		let user = $scope.users[index];
-
-  		console.log(level);
-  	}
+  		Admin.updateLevel(user).then(function(response) {
+          //do somethin
+        })
+        .catch(function(response) {
+          $scope.messages = {
+            error: Array.isArray(response.data) ? response.data : [response.data]
+          };
+        });
+  	};
 
     // $scope.profile = $rootScope.currentUser;
 
