@@ -7,7 +7,8 @@
 			      <th>#</th>
 			      <th>Name</th>
 			      <th>Email</th>
-			      <th>Level</th>
+			      <th style="text-align-last: center">Level</th>
+			      <th class="text-align-last-right" style="padding-right: 13px">Delete</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -17,15 +18,30 @@
 			      <td>{{user.email}}</td>
 			      <td>
 			      	<div class="form-group">
-							  <select class="form-control" ng-model="user.level" ng-options="option.value as option.name for option in levelOptions" ng-change="updateLevel($index)" ng-disabled="currentUser._id === user._id"/>
+							  <select class="form-control select-fresh" ng-model="user.level" ng-options="option.value as option.name for option in levelOptions" ng-change="updateLevel($index)" ng-disabled="currentUser._id === user._id"/>
 							</div>
 						</td>
-
+						<td class="text-align-last-right" style="padding-right: 10px">
+              <a href="#" class="btn btn-vermillion btn-sm delete" ng-click="confirmDelete($index)"><i class="material-icons">delete</i></a>
+						</td>
 			    </tr>
 			  </tbody>
 			</table> 
 	  </div>
 	</div>
+
+  <div modal="deleteModal" close="cancel()">
+    <div class="modal-header">
+        <h4>Modal Dialog</h4>
+    </div>
+    <div class="modal-body">
+        <p>Example paragraph with some text.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" ng-click="okDelete()">Okay</button>
+      <button class="btn" ng-click="cancelDelete()">Cancel</button>
+    </div>
+  </div>
 
 	
   <!-- <div class="panel">

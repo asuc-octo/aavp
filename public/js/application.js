@@ -329,6 +329,17 @@ angular.module('MyApp')
         });
   	};
 
+    $scope.confirmDelete = function(index) {
+      $scope.deleteModal = true;
+    };
+
+    $scope.okDelete = function() {
+      $scope.deleteModal = false;
+    };
+
+    $scope.cancelDelete = function() {
+      $scope.deleteModal = false;
+    };
     // $scope.profile = $rootScope.currentUser;
 
     // $scope.updateProfile = function() {
