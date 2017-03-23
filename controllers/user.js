@@ -91,8 +91,9 @@ exports.signupPost = function(req, res, next) {
 };
 
 /**
+   * ADMIN
    * Get /users
-   * Get all users, given correct permission level
+   * Get all users
    */
 exports.usersGet = function(req, res, next) {
   if(!req.user || req.user.level == undefined || req.user.level < 2) {
@@ -112,10 +113,11 @@ exports.usersGet = function(req, res, next) {
 
 
 /**
+ * ADMIN
  * PUT /userLevel
- * Update user level (if admin)
+ * Update user level
  */
-exports.updateLevel = function(req, res, next) {
+exports.updateLevelPut = function(req, res, next) {
   if(!req.user || req.user.level == undefined || req.user.level < 2) {
     return res.status(401).send({ msg: 'Unauthorized' });
   }
@@ -128,6 +130,21 @@ exports.updateLevel = function(req, res, next) {
           res.send({ msg: 'User level updated' });
       })
     }
+  });
+};
+
+/**
+   * ADMIN
+   * Delete /user/:id
+   * Delete a user
+   */
+exports.userDelete = function(req, res, next) {
+  if(!req.user || req.user.level == undefined || req.user.level < 2) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+
+  User.remove({ _id: req.params.id }, function(err) {
+    res.send({ msg: 'This user has been permanently deleted.' });
   });
 };
 

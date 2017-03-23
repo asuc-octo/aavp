@@ -60,6 +60,8 @@ app.use(function(req, res, next) {
 });
 
 app.post('/contact', contactController.contactPost);
+
+//account
 app.put('/account', userController.ensureAuthenticated, userController.accountPut);
 app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
 app.post('/signup', userController.signupPost);
@@ -69,8 +71,12 @@ app.post('/reset/:token', userController.resetPost);
 app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
 app.post('/auth/google', userController.authGoogle);
 app.get('/auth/google/callback', userController.authGoogleCallback);
+
+//admin
 app.get('/users', userController.ensureAuthenticated, userController.usersGet);
-app.put('/user', userController.ensureAuthenticated, userController.updateLevel);
+app.put('/user', userController.ensureAuthenticated, userController.updateLevelPut);
+app.delete('/user/:id', userController.ensureAuthenticated, userController.userDelete);
+
 
 
 app.get('/', function(req, res) {

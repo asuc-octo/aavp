@@ -32,83 +32,105 @@
 	vertical-align: middle;
 }
 
-
-/* BEGIN VERMILLION */
-.btn-vermillion {
-	color: #ffffff;
-	background-color: #fc4a1a;
-	border-color: transparent;
+.modal {
+  text-align: center;
+  padding: 0!important;
 }
 
-.btn-vermillion:focus,
-.btn-vermillion.focus {
-  color: #ffffff;
-  background-color: #e23403;
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+
+/* BEGIN CLEAN 
+Standard: #dfdce3;
+Dark: #cbc6d2;
+*/
+.btn-clean {
+  color: black;
+  background-color: #dfdce3;
+  border-color: transparent;
+}
+
+.btn-clean:focus,
+.btn-clean.focus {
+  color: black;
+  background-color: #cbc6d2;
   border-color: rgba(0, 0, 0, 0);
 }
-.btn-vermillion:hover {
-  color: #ffffff;
-  background-color: #e23403;
+.btn-clean:hover {
+  color: black;
+  background-color: #cbc6d2;
   border-color: rgba(0, 0, 0, 0);
 }
-.btn-vermillion:active,
-.btn-vermillion.active,
-.open > .dropdown-toggle.btn-vermillion {
-  color: #ffffff;
-  background-color: #e23403;
+.btn-clean:active,
+.btn-clean.active,
+.open > .dropdown-toggle.btn-clean {
+  color: black;
+  background-color: #cbc6d2;
   border-color: rgba(0, 0, 0, 0);
 }
-.btn-vermillion:active:hover,
-.btn-vermillion.active:hover,
-.open > .dropdown-toggle.btn-vermillion:hover,
-.btn-vermillion:active:focus,
-.btn-vermillion.active:focus,
-.open > .dropdown-toggle.btn-vermillion:focus,
-.btn-vermillion:active.focus,
-.btn-vermillion.active.focus,
-.open > .dropdown-toggle.btn-vermillion.focus {
-  color: #ffffff;
+.btn-clean:active:hover,
+.btn-clean.active:hover,
+.open > .dropdown-toggle.btn-clean:hover,
+.btn-clean:active:focus,
+.btn-clean.active:focus,
+.open > .dropdown-toggle.btn-clean:focus,
+.btn-clean:active.focus,
+.btn-clean.active.focus,
+.open > .dropdown-toggle.btn-clean.focus {
+  color: black;
   background-color: #0a68b4;
   border-color: rgba(0, 0, 0, 0);
 }
-.btn-vermillion:active,
-.btn-vermillion.active,
-.open > .dropdown-toggle.btn-vermillion {
+.btn-clean:active,
+.btn-clean.active,
+.open > .dropdown-toggle.btn-clean {
   background-image: none;
 }
-.btn-vermillion.disabled:hover,
-.btn-vermillion[disabled]:hover,
-fieldset[disabled] .btn-vermillion:hover,
-.btn-vermillion.disabled:focus,
-.btn-vermillion[disabled]:focus,
-fieldset[disabled] .btn-vermillion:focus,
-.btn-vermillion.disabled.focus,
-.btn-vermillion[disabled].focus,
-fieldset[disabled] .btn-vermillion.focus {
-  background-color: #fc4a1a;
+.btn-clean.disabled:hover,
+.btn-clean[disabled]:hover,
+fieldset[disabled] .btn-clean:hover,
+.btn-clean.disabled:focus,
+.btn-clean[disabled]:focus,
+fieldset[disabled] .btn-clean:focus,
+.btn-clean.disabled.focus,
+.btn-clean[disabled].focus,
+fieldset[disabled] .btn-clean.focus {
+  background-color: #dfdce3;
   border-color: transparent;
 }
-.btn-vermillion .badge {
-  color: #fc4a1a; 
+.btn-clean .badge {
+  color: #dfdce3; 
   background-color: #ffffff;
 }
 
-.btn-vermillion {
+.btn-clean {
   position: relative;
 }
 
-.btn-vermillion:focus {
-  background-color: #e23403;
+.btn-clean:focus {
+  background-color: #cbc6d2;
 }
-.btn-vermillion:hover,
-.btn-vermillion:active:hover {
-  background-color: #e23403;
+.btn-clean:hover,
+.btn-clean:active:hover {
+  background-color: #cbc6d2;
 }
-.btn-vermillion:active {
+.btn-clean:active {
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
-.btn-vermillion:after {
+.btn-clean:after {
   content: "";
   display: block;
   position: absolute;
@@ -129,7 +151,7 @@ fieldset[disabled] .btn-vermillion.focus {
        -o-transition: background .5s, opacity 1s;
           transition: background .5s, opacity 1s;
 }
-.btn-vermillion:active:after {
+.btn-clean:active:after {
   -webkit-background-size: 0% 0%;
           background-size: 0% 0%;
   opacity: .2;
@@ -137,9 +159,13 @@ fieldset[disabled] .btn-vermillion.focus {
        -o-transition: 0s;
           transition: 0s;
 }
-/* END VERMILLION */
+/* END CLEAN */
 
-/* BEGIN FRESH */
+
+
+/* BEGIN FRESH 
+  Standard: #4abdac;
+*/
 .select-fresh:focus,
 .select-fresh.form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #4abdac;
@@ -242,3 +268,116 @@ fieldset[disabled] .navbar-fresh .btn-link:focus {
   color: #cccccc;
 }
 /* END FRESH */
+
+
+
+/* BEGIN VERMILLION 
+Standard: #fc4a1a;
+Dark: #e23403;
+*/
+.btn-vermillion {
+  color: #ffffff;
+  background-color: #fc4a1a;
+  border-color: transparent;
+}
+
+.btn-vermillion:focus,
+.btn-vermillion.focus {
+  color: #ffffff;
+  background-color: #e23403;
+  border-color: rgba(0, 0, 0, 0);
+}
+.btn-vermillion:hover {
+  color: #ffffff;
+  background-color: #e23403;
+  border-color: rgba(0, 0, 0, 0);
+}
+.btn-vermillion:active,
+.btn-vermillion.active,
+.open > .dropdown-toggle.btn-vermillion {
+  color: #ffffff;
+  background-color: #e23403;
+  border-color: rgba(0, 0, 0, 0);
+}
+.btn-vermillion:active:hover,
+.btn-vermillion.active:hover,
+.open > .dropdown-toggle.btn-vermillion:hover,
+.btn-vermillion:active:focus,
+.btn-vermillion.active:focus,
+.open > .dropdown-toggle.btn-vermillion:focus,
+.btn-vermillion:active.focus,
+.btn-vermillion.active.focus,
+.open > .dropdown-toggle.btn-vermillion.focus {
+  color: #ffffff;
+  background-color: #0a68b4;
+  border-color: rgba(0, 0, 0, 0);
+}
+.btn-vermillion:active,
+.btn-vermillion.active,
+.open > .dropdown-toggle.btn-vermillion {
+  background-image: none;
+}
+.btn-vermillion.disabled:hover,
+.btn-vermillion[disabled]:hover,
+fieldset[disabled] .btn-vermillion:hover,
+.btn-vermillion.disabled:focus,
+.btn-vermillion[disabled]:focus,
+fieldset[disabled] .btn-vermillion:focus,
+.btn-vermillion.disabled.focus,
+.btn-vermillion[disabled].focus,
+fieldset[disabled] .btn-vermillion.focus {
+  background-color: #fc4a1a;
+  border-color: transparent;
+}
+.btn-vermillion .badge {
+  color: #fc4a1a; 
+  background-color: #ffffff;
+}
+
+.btn-vermillion {
+  position: relative;
+}
+
+.btn-vermillion:focus {
+  background-color: #e23403;
+}
+.btn-vermillion:hover,
+.btn-vermillion:active:hover {
+  background-color: #e23403;
+}
+.btn-vermillion:active {
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+.btn-vermillion:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: -webkit-radial-gradient(circle, #ffffff 10%, transparent 10.01%);
+  background-image: -o-radial-gradient(circle, #ffffff 10%, transparent 10.01%);
+  background-image: radial-gradient(circle, #ffffff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  -webkit-background-size: 1000% 1000%;
+          background-size: 1000% 1000%;
+  background-position: 50%;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: background .5s, opacity 1s;
+       -o-transition: background .5s, opacity 1s;
+          transition: background .5s, opacity 1s;
+}
+.btn-vermillion:active:after {
+  -webkit-background-size: 0% 0%;
+          background-size: 0% 0%;
+  opacity: .2;
+  -webkit-transition: 0s;
+       -o-transition: 0s;
+          transition: 0s;
+}
+/* END VERMILLION */
+
+

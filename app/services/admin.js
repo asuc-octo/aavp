@@ -6,6 +6,9 @@ angular.module('MyApp')
       },
       updateLevel: function(data) {
         return $http.put('/user', data);
+      },
+      deleteUser: function(id) {
+        return $http.delete('/user/' + id);
       }
     };
   });

@@ -288,9 +288,10 @@ angular.module('MyApp')
     };
   }]);
 angular.module('MyApp')
-  .controller('AdminUsersCtrl', ["$scope", "$rootScope", "$location", "$window", "$auth", "Admin", function($scope, $rootScope, $location, $window, $auth, Admin) {
+  .controller('AdminUsersCtrl', ["$scope", "$rootScope", "$uibModal", "$auth", "Admin", function($scope, $rootScope, $uibModal, $auth, Admin) {
   	$scope.users = [];
   	$scope.currentUser = $rootScope.currentUser;
+    $scope.userToDelete = null;
 
   	$scope.levelOptions = [
 		    { name: 'Unapproved', value: 0 },
@@ -298,9 +299,9 @@ angular.module('MyApp')
 		    { name: 'Admin', value: 2 }
 		];
 
+
   	Admin.getUsers()
   		.then(function(response) {
-  			console.log(response.data.users);
   			$scope.users = response.data.users;
   		})
   		.catch(function(response) {
@@ -329,91 +330,52 @@ angular.module('MyApp')
         });
   	};
 
-    $scope.confirmDelete = function(index) {
-      $scope.deleteModal = true;
+    $scope.open = function(index) {
+      var modalInstance = $uibModal.open({
+        animation: false,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        controllerAs: '$ctrl',
+        size: 'md',
+        resolve: {
+          user: function () {
+            return $scope.users[index];
+          }
+        }
+      });
+
+      modalInstance.result.then(function (del) {
+        if(del) {
+          Admin.deleteUser($scope.users[index]._id).then(function(response) {
+            $scope.users.splice(index, 1);
+          })
+          .catch(function(response) {
+            console.log(response);
+          });
+        }
+      });
     };
 
-    $scope.okDelete = function() {
-      $scope.deleteModal = false;
-    };
 
-    $scope.cancelDelete = function() {
-      $scope.deleteModal = false;
-    };
-    // $scope.profile = $rootScope.currentUser;
+}]);
 
-    // $scope.updateProfile = function() {
-    //   Account.updateProfile($scope.profile)
-    //     .then(function(response) {
-    //       $rootScope.currentUser = response.data.user;
-    //       $window.localStorage.user = JSON.stringify(response.data.user);
-    //       $scope.messages = {
-    //         success: [response.data]
-    //       };
-    //     })
-    //     .catch(function(response) {
-    //       $scope.messages = {
-    //         error: Array.isArray(response.data) ? response.data : [response.data]
-    //       };
-    //     });
-    // };
 
-    // $scope.changePassword = function() {
-    //   Account.changePassword($scope.profile)
-    //     .then(function(response) {
-    //       $scope.messages = {
-    //         success: [response.data]
-    //       };
-    //     })
-    //     .catch(function(response) {
-    //       $scope.messages = {
-    //         error: Array.isArray(response.data) ? response.data : [response.data]
-    //       };
-    //     });
-    // };
+angular.module('MyApp').controller('ModalInstanceCtrl', ["$uibModalInstance", "user", function ($uibModalInstance, user) {
+  let $ctrl = this;
+  let levels = ['Unapproved', 'Poster', 'Admin'];
+  $ctrl.user = user;
+  $ctrl.userLevelStr = levels[user.level];
 
-    // $scope.link = function(provider) {
-    //   $auth.link(provider)
-    //     .then(function(response) {
-    //       $scope.messages = {
-    //         success: [response.data]
-    //       };
-    //     })
-    //     .catch(function(response) {
-    //       $window.scrollTo(0, 0);
-    //       $scope.messages = {
-    //         error: [response.data]
-    //       };
-    //     });
-    // };
-    // $scope.unlink = function(provider) {
-    //   $auth.unlink(provider)
-    //     .then(function() {
-    //       $scope.messages = {
-    //         success: [response.data]
-    //       };
-    //     })
-    //     .catch(function(response) {
-    //       $scope.messages = {
-    //         error: [response.data]
-    //       };
-    //     });
-    // };
+  $ctrl.ok = function () {
+    $uibModalInstance.close(true);
+  };
 
-    // $scope.deleteAccount = function() {
-    //   Account.deleteAccount()
-    //     .then(function() {
-    //       $auth.logout();
-    //       delete $window.localStorage.user;
-    //       $location.path('/');
-    //     })
-    //     .catch(function(response) {
-    //       $scope.messages = {
-    //         error: [response.data]
-    //       };
-    //     });
-    // };
-  }]);
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss(false);
+  };
+}]);
 angular.module('MyApp')
   .factory('Account', ["$http", function($http) {
     return {
@@ -442,6 +404,9 @@ angular.module('MyApp')
       },
       updateLevel: function(data) {
         return $http.put('/user', data);
+      },
+      deleteUser: function(id) {
+        return $http.delete('/user/' + id);
       }
     };
   }]);
