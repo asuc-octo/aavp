@@ -10,7 +10,6 @@
 - **Database**: mongodb
 - **Authentication**: google, email
 - **Deployment**: heroku
-- **Packages**: angular-ui-bootstrap ( http://angular-ui.github.io/bootstrap/ )
 
 ### Setup Instructions:
 1. Clone down repo from GitHub
