@@ -12,7 +12,7 @@
 - **Deployment**: heroku
 - **Packages**: angular-ui-bootstrap ( http://angular-ui.github.io/bootstrap/ )
 
-##Setup Instructions:
+### Setup Instructions:
 1. Clone down repo from GitHub
 2. Make a new branch:
 * git checkout -b 'new-branch-name'
