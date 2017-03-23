@@ -1,4 +1,4 @@
-angular.module('MyApp', ['ngRoute', 'satellizer'])
+angular.module('MyApp', ['ngRoute', 'satellizer', 'ui.bootstrap'])
   .config(["$routeProvider", "$locationProvider", "$authProvider", function($routeProvider, $locationProvider, $authProvider) {
     skipIfAuthenticated.$inject = ["$location", "$auth"];
     loginRequired.$inject = ["$location", "$auth"];

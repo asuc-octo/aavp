@@ -169,14 +169,12 @@ fieldset[disabled] .btn-vermillion.focus {
 .navbar-fresh .navbar-nav > li > a:hover,
 .navbar-fresh .navbar-nav > li > a:focus {
   color: #f8c154;
-  font-weight: bold;
   background-color: transparent;
 }
 .navbar-fresh .navbar-nav > .active > a,
 .navbar-fresh .navbar-nav > .active > a:hover,
 .navbar-fresh .navbar-nav > .active > a:focus {
   color: #f8c154;
-  font-weight: bold;
 }
 .navbar-fresh .navbar-nav > .disabled > a,
 .navbar-fresh .navbar-nav > .disabled > a:hover,
