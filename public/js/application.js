@@ -41,6 +41,10 @@ angular.module('MyApp', ['ngRoute', 'satellizer', 'ui.bootstrap'])
         templateUrl: 'partials/admin/users.html',
         controller: 'AdminUsersCtrl',
       })
+      .when('/admin/committees', {
+        templateUrl: 'partials/admin/committees.html',
+        controller: 'AdminCommitteesCtrl',
+      })
       .otherwise({
         templateUrl: 'partials/404.html'
       });
@@ -287,6 +291,11 @@ angular.module('MyApp')
         });
     };
   }]);
+angular.module('MyApp')
+  .controller('AdminCommitteesCtrl', ["$scope", "$rootScope", "$uibModal", "$auth", "Admin", function($scope, $rootScope, $uibModal, $auth, Admin) {
+
+}]);
+
 angular.module('MyApp')
   .controller('AdminUsersCtrl', ["$scope", "$rootScope", "$uibModal", "$auth", "Admin", function($scope, $rootScope, $uibModal, $auth, Admin) {
   	$scope.users = [];

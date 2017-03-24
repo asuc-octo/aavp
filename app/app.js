@@ -39,6 +39,10 @@ angular.module('MyApp', ['ngRoute', 'satellizer', 'ui.bootstrap'])
         templateUrl: 'partials/admin/users.html',
         controller: 'AdminUsersCtrl',
       })
+      .when('/admin/committees', {
+        templateUrl: 'partials/admin/committees.html',
+        controller: 'AdminCommitteesCtrl',
+      })
       .otherwise({
         templateUrl: 'partials/404.html'
       });

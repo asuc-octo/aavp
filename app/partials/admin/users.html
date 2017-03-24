@@ -1,5 +1,8 @@
 <div class="container">
-	<div class="panel panel-default">
+	<div class="panel panel-founder">
+		<div class="panel-heading">
+	    <h3 class="panel-title">Manage Users</h3>
+	  </div>
 	  <div class="panel-body">
 			<table class="table table-hover admin-users">
 			  <thead>
@@ -18,11 +21,11 @@
 			      <td>{{user.email}}</td>
 			      <td>
 			      	<div class="form-group">
-							  <select class="form-control select-fresh" ng-model="user.level" ng-options="option.value as option.name for option in levelOptions" ng-change="updateLevel($index)" ng-disabled="currentUser._id === user._id"/>
+							  <select class="form-control select-founder" ng-model="user.level" ng-options="option.value as option.name for option in levelOptions" ng-change="updateLevel($index)" ng-disabled="currentUser._id === user._id"/>
 							</div>
 						</td>
 						<td class="text-align-last-right" style="padding-right: 10px">
-              <a href="#" class="btn btn-vermillion btn-sm delete" ng-click="currentUser._id === user._id || open($index)" ng-disabled="currentUser._id === user._id"><i class="material-icons">delete</i></a>
+              <a href="#" class="btn btn-golden btn-sm delete" ng-click="currentUser._id === user._id || open($index)" ng-disabled="currentUser._id === user._id"><i class="material-icons">delete</i></a>
 						</td>
 			    </tr>
 			  </tbody>
@@ -43,7 +46,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-vermillion" type="button" ng-click="$ctrl.ok()">Delete</button>
+        <button class="btn btn-golden" type="button" ng-click="$ctrl.ok()">Delete</button>
         <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
     </div>
 </script>

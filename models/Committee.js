@@ -9,7 +9,7 @@ var schemaOptions = {
 
 var committeeSchema = new mongoose.Schema({
   name: String,
-  members:[{ "type": Schema.Types.ObjectId, "ref": "User" }],
+  members:[{ "type": mongoose.Schema.Types.ObjectId, "ref": "User" }],
   description: String
 
 }, schemaOptions);

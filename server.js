@@ -16,6 +16,8 @@ dotenv.load();
 
 // Models
 var User = require('./models/User');
+var Committee = require('./models/Committee');
+
 
 // Controllers
 var userController = require('./controllers/user');
