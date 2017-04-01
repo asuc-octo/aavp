@@ -357,11 +357,11 @@ angular.module('MyApp')
       let len = name.length % 6;
       switch(len){
         case 0: return 'default';
-        case 1: return 'primary';
+        case 1: return 'danger';
         case 2: return 'success';
         case 3: return 'warning';
         case 4: return 'info';
-        default: return 'danger';
+        default: return 'primary';
       }
     };
 
@@ -373,7 +373,7 @@ angular.module('MyApp')
         templateUrl: 'editCommitteeModal.html',
         controller: 'EditCommitteeInstanceCtrl',
         controllerAs: '$ctrl',
-        size: 'md',
+        size: 'lg',
         resolve: {
           data: function () {
             let data = {};
@@ -386,12 +386,18 @@ angular.module('MyApp')
         }
       });
 
-      modalInstance.result.then(function (del) {
-        if(del) {
-          Admin.deleteUser($scope.users[index]._id).then(function(response) {
-            $scope.users.splice(index, 1);
+      modalInstance.result.then(function (committee) {
+        if(!committee) {
+          Admin.deleteCommittee($scope.committees[index]._id).then(function(response) {
+            $scope.committees.splice(index, 1);
           })
           .catch(function(response) {
+            console.log(response);
+          });
+        } else {
+          Admin.putCommittee(committee).then(function(response) {
+            $scope.committees[index] = committee;
+          }).catch(function(response) {
             console.log(response);
           });
         }
@@ -407,8 +413,19 @@ angular.module('MyApp').controller('EditCommitteeInstanceCtrl', ["$uibModalInsta
   $ctrl.getLabelColor = data.getLabelColor;
   $ctrl.users = data.users;
 
+  $ctrl.addUserToCommittee = function(item, model, label) {
+    if($ctrl.committee.members.indexOf(item._id) == -1) {
+      $ctrl.committee.members.push(item._id);
+    }
+    $ctrl.selected = null;
+  }
+
+  $ctrl.removeUserFromCommittee = function(item) {
+    $ctrl.committee.members.splice($ctrl.committee.members.indexOf(item), 1);
+  }
+
   $ctrl.delete = function () {
-    $uibModalInstance.close(true);
+    $uibModalInstance.close(false);
   };
 
   $ctrl.cancel = function () {
@@ -416,7 +433,7 @@ angular.module('MyApp').controller('EditCommitteeInstanceCtrl', ["$uibModalInsta
   };
 
   $ctrl.saveChanges = function () {
-    console.log($ctrl.committee);
+    $uibModalInstance.close($ctrl.committee);
   };
 }]);
 
@@ -543,6 +560,12 @@ angular.module('MyApp')
       },
       postCommittee: function(data) {
         return $http.post('/committees', data);
+      },
+      putCommittee: function(data) {
+        return $http.put('/committees', data);
+      },
+      deleteCommittee: function(id) {
+        return $http.delete('/committee/' + id);
       }
     };
   }]);

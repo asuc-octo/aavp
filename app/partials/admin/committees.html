@@ -59,7 +59,7 @@
         <h5 class="modal-title text-center" id="modal-title">Editing {{$ctrl.committee.name}}</h5>
     </div>
 
-    <form ng-submit="">
+    <form ng-submit="$ctrl.saveChanges()">
 	    <div class="modal-body" id="modal-body">
 					<div class="form-group">
 					  <label for="name">Committee Name</label>
@@ -67,11 +67,11 @@
 					</div>
 					<div class="form-group">
 					  <label for="name">Members</label>
-					  <input type="text" ng-model="selected" uib-typeahead="user.name + '  [' + user.email + ']' for user in $ctrl.users | filter:$viewValue | limitTo:8" typeahead-editable="false" typeahead-on-select="" placeholder="Enter user's name or email" class="form-control"> <!--TODO select action-->
+					  <input type="text" ng-model="$ctrl.selected" uib-typeahead="user.name + '  [' + user.email + ']' for user in $ctrl.users | filter:$viewValue | limitTo:8" typeahead-editable="false" typeahead-on-select="$ctrl.addUserToCommittee($item, $model, $label)" placeholder="Enter user's name or email" class="form-control">
 					  <div style="margin-top: 10px; margin-bottom: -10px;">
 					  	<span ng-repeat="userId in $ctrl.committee.members" class="label committee-member-label" ng-class="'label-' + $ctrl.getLabelColor($ctrl.userIdToName[userId])">
 							  <span>{{$ctrl.userIdToName[userId]}}</span>
-							  <a ng-click=""><i class="material-icons">close</i></a> <!--TODO remove on ng click-->
+							  <a ng-click="$ctrl.removeUserFromCommittee(user)"><i class="material-icons">close</i></a>
 							</span>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 	    </div>
 	    <div class="modal-footer">
 	    		<button type="submit" class="btn btn-founder">Save Changes</button>
-	        <button class="btn btn-golden" type="button" ng-click="$ctrl.ok()">Delete</button>
+	        <button class="btn btn-golden" type="button" ng-click="$ctrl.delete()">Delete</button>
 	        <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
 	    </div>
   </form>

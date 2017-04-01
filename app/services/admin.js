@@ -12,6 +12,12 @@ angular.module('MyApp')
       },
       postCommittee: function(data) {
         return $http.post('/committees', data);
+      },
+      putCommittee: function(data) {
+        return $http.put('/committees', data);
+      },
+      deleteCommittee: function(id) {
+        return $http.delete('/committee/' + id);
       }
     };
   });

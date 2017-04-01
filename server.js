@@ -81,6 +81,9 @@ app.put('/user', userController.ensureAuthenticated, userController.updateLevelP
 app.delete('/user/:id', userController.ensureAuthenticated, userController.userDelete);
 app.post('/committees', committeeController.committeePost);
 app.get('/committees', committeeController.committeesGet);
+app.put('/committees', committeeController.committeePut);
+app.delete('/committee/:id', committeeController.committeeDelete);
+
 
 
 
