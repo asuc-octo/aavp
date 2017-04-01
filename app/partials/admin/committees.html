@@ -4,14 +4,26 @@
 	    <h3 class="panel-title">Add a Committee</h3>
 	  </div>
 	  <div class="panel-body">
-	  	<form ng-submit="signup()">
+	  	<form ng-submit="createNewCommittee()">
 	      <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Name" class="form-control" ng-model="user.name" autofocus>
+          <label for="name">Committee Name</label>
+          <input type="text" name="name" id="name" placeholder="Enter committee name" class="form-control" ng-model="newCommittee.name" autofocus>
+	      </div>
+	      <div class="form-group">
+          <label for="name">Members</label>
+			    <input type="text" ng-model="selected" uib-typeahead="user.name + '  [' + user.email + ']' for user in users | filter:$viewValue | limitTo:8" typeahead-editable="false" typeahead-on-select="addUserToNewCommittee($item, $model, $label)" placeholder="Enter user's name or email" class="form-control">
+			    
+			    <div style="margin-top: 10px; margin-bottom: -10px;">
+				    <span ng-repeat="user in newCommittee.members" class="label committee-member-label" ng-class="'label-' + getLabelColor(user.name)">
+						  <span>{{user.name}}</span>
+						  <a ng-click="removeUserFromNewCommittee(user)"><i class="material-icons">close</i></a>
+						</span>
+
+					</div>
 	      </div>
 	      <div class="form-group">
 		    	<label for="textArea">Description</label>
-	        <textarea class="form-control" rows="3" id="textArea"></textarea>
+	        <textarea class="form-control" rows="3" id="textArea" ng-model="newCommittee.description"></textarea>
 	        <span class="help-block">Put a short description of the committee and it's responsibilities here.</span>
 	    	</div>
 	    	<div class="form-group">
@@ -20,13 +32,59 @@
 	    </form>
 		</div>
 	</div>
-
 	<div class="panel panel-founder">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Manage Committees</h3>
 	  </div>
 	  <div class="panel-body">
+
+	  	<div class="list-group">
+			  <a ng-repeat="committee in committees" ng-click="open($index)" class="list-group-item">
+			    <h4 class="list-group-item-heading">{{committee.name}}</h4>
+			    <p class="list-group-item-text">{{committee.description}}</p>
+			    <div>
+				    <span ng-repeat="userId in committee.members" class="label committee-member-label-sub" ng-class="'label-' + getLabelColor(userIdToName[userId])">
+						  <span>{{userIdToName[userId]}}</span>
+						</span>
+					</div>
+			  </a>
+			</div>
+
 		</div>
 	</div>
-
 </div>
+
+<script type="text/ng-template" id="editCommitteeModal.html">
+    <div class="modal-header">
+        <h5 class="modal-title text-center" id="modal-title">Editing {{$ctrl.committee.name}}</h5>
+    </div>
+
+    <form ng-submit="">
+	    <div class="modal-body" id="modal-body">
+					<div class="form-group">
+					  <label for="name">Committee Name</label>
+					  <input type="text" name="name" id="name" placeholder="Enter committee name" class="form-control" ng-model="$ctrl.committee.name" autofocus>
+					</div>
+					<div class="form-group">
+					  <label for="name">Members</label>
+					  <input type="text" ng-model="selected" uib-typeahead="user.name + '  [' + user.email + ']' for user in $ctrl.users | filter:$viewValue | limitTo:8" typeahead-editable="false" typeahead-on-select="" placeholder="Enter user's name or email" class="form-control"> <!--TODO select action-->
+					  <div style="margin-top: 10px; margin-bottom: -10px;">
+					  	<span ng-repeat="userId in $ctrl.committee.members" class="label committee-member-label" ng-class="'label-' + $ctrl.getLabelColor($ctrl.userIdToName[userId])">
+							  <span>{{$ctrl.userIdToName[userId]}}</span>
+							  <a ng-click=""><i class="material-icons">close</i></a> <!--TODO remove on ng click-->
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textArea">Description</label>
+					  <textarea class="form-control" rows="3" id="textArea" ng-model="$ctrl.committee.description"></textarea>
+					  <span class="help-block">Put a short description of the committee and it's responsibilities here.</span>
+					</div>
+	    </div>
+	    <div class="modal-footer">
+	    		<button type="submit" class="btn btn-founder">Save Changes</button>
+	        <button class="btn btn-golden" type="button" ng-click="$ctrl.ok()">Delete</button>
+	        <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+	    </div>
+  </form>
+</script>

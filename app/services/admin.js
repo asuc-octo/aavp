@@ -9,6 +9,9 @@ angular.module('MyApp')
       },
       deleteUser: function(id) {
         return $http.delete('/user/' + id);
+      },
+      postCommittee: function(data) {
+        return $http.post('/committees', data);
       }
     };
   });

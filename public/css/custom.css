@@ -55,6 +55,32 @@
   margin-bottom: 0px;
 }
 
+.committee-member-label {
+  font-size: 14px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.committee-member-label .material-icons {
+  vertical-align: middle; 
+  font-size: 18px; 
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.committee-member-label .material-icons:focus, 
+.committee-member-label .material-icons:hover{
+  color: #e6e6e6;
+}
+
+.committee-member-label-sub {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+.list-group-item:hover {
+  cursor: pointer;
+}
 /* BEGIN founder 
   Standard: #3B7EA1;
   DarkL #306682;

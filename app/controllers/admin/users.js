@@ -46,8 +46,8 @@ angular.module('MyApp')
         animation: false,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
-        templateUrl: 'myModalContent.html',
-        controller: 'ModalInstanceCtrl',
+        templateUrl: 'userDeleteModal.html',
+        controller: 'DeleteUserInstanceCtrl',
         controllerAs: '$ctrl',
         size: 'md',
         resolve: {
@@ -73,7 +73,7 @@ angular.module('MyApp')
 });
 
 
-angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInstance, user) {
+angular.module('MyApp').controller('DeleteUserInstanceCtrl', function ($uibModalInstance, user) {
   let $ctrl = this;
   let levels = ['Unapproved', 'Poster', 'Admin'];
   $ctrl.user = user;

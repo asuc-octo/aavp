@@ -8,10 +8,10 @@ var schemaOptions = {
 };
 
 var committeeSchema = new mongoose.Schema({
-  name: String,
-  members:[{ "type": mongoose.Schema.Types.ObjectId, "ref": "User" }],
-  description: String
-
+  name: { type: String, unique: true},
+  members: [{ "type": mongoose.Schema.Types.ObjectId, "ref": "User" }],
+  description: String,
+  category: String
 }, schemaOptions);
 
 var Committee = mongoose.model('Committee', committeeSchema);

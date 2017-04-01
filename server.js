@@ -21,6 +21,7 @@ var Committee = require('./models/Committee');
 
 // Controllers
 var userController = require('./controllers/user');
+var committeeController = require('./controllers/committee');
 var contactController = require('./controllers/contact');
 
 var app = express();
@@ -78,6 +79,8 @@ app.get('/auth/google/callback', userController.authGoogleCallback);
 app.get('/users', userController.ensureAuthenticated, userController.usersGet);
 app.put('/user', userController.ensureAuthenticated, userController.updateLevelPut);
 app.delete('/user/:id', userController.ensureAuthenticated, userController.userDelete);
+app.post('/committees', committeeController.committeePost);
+app.get('/committees', committeeController.committeesGet);
 
 
 
