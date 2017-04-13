@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var User = require('./User');
 
 var schemaOptions = {
   timestamps: true,
@@ -9,7 +10,7 @@ var schemaOptions = {
 
 var committeeSchema = new mongoose.Schema({
   name: { type: String, unique: true},
-  members: [{ "type": mongoose.Schema.Types.ObjectId, "ref": "User" }],
+  members: [{ "type": mongoose.Schema.Types.ObjectId, "ref": User }],
   description: String,
   category: String
 }, schemaOptions);

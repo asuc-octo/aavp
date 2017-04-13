@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
 var mongoose = require('mongoose');
+var Committee = require('./Committee');
 
 var schemaOptions = {
   timestamps: true,
@@ -15,10 +16,7 @@ var userSchema = new mongoose.Schema({
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-  gender: String,
-  location: String,
-  website: String,
-  picture: String,
+  committees: [{ "type": mongoose.Schema.Types.ObjectId, "ref": Committee }],
   level: { type: Number, default: 0},
   google: String
 }, schemaOptions);

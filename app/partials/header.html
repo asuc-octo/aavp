@@ -1,19 +1,15 @@
-<nav ng-controller="HeaderCtrl" class="navbar navbar-founder navbar-static-top">
-  <div class="container">
+<nav ng-controller="HeaderCtrl" class="navbar navbar-berkeley navbar-static-top">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="material-icons nav-dots">more_vert</span>
       </button>
-      <a href="/" class="navbar-brand">AAVP</a>
+        <a class="navbar-brand" href="/">
+          <img class="logo" src="css/img/aavp_horizontal_white.png" height="60" alt="">
+        </a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
-        <li ng-class="{ active: isActive('/contact')}"><a href="/contact">Contact</a></li>
-      </ul>
       <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
         <li ng-if="currentUser.level > 1" ng-class="{ active: isActive('/admin/users')}"><a href="/admin/users">Users</a></li>
         <li ng-if="currentUser.level > 1" ng-class="{ active: isActive('/admin/committees')}"><a href="/admin/committees">Committees</a></li>

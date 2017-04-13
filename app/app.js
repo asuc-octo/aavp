@@ -1,4 +1,4 @@
-angular.module('MyApp', ['ngRoute', 'satellizer', 'ui.bootstrap'])
+angular.module('MyApp', ['ngRoute', 'satellizer', 'ui.bootstrap', 'textAngular'])
   .config(function($routeProvider, $locationProvider, $authProvider) {
     $locationProvider.html5Mode(true);
 
@@ -42,6 +42,10 @@ angular.module('MyApp', ['ngRoute', 'satellizer', 'ui.bootstrap'])
       .when('/admin/committees', {
         templateUrl: 'partials/admin/committees.html',
         controller: 'AdminCommitteesCtrl',
+      })
+      .when('/poster/posts', {
+        templateUrl: 'partials/poster/posts.html',
+        controller: 'PosterPostsCtrl',
       })
       .otherwise({
         templateUrl: 'partials/404.html'

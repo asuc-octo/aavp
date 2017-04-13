@@ -79,10 +79,15 @@ app.get('/auth/google/callback', userController.authGoogleCallback);
 app.get('/users', userController.ensureAuthenticated, userController.usersGet);
 app.put('/user', userController.ensureAuthenticated, userController.updateLevelPut);
 app.delete('/user/:id', userController.ensureAuthenticated, userController.userDelete);
-app.post('/committees', committeeController.committeePost);
+app.post('/committees', userController.ensureAuthenticated, committeeController.committeePost);
 app.get('/committees', committeeController.committeesGet);
-app.put('/committees', committeeController.committeePut);
+app.put('/committees',  userController.ensureAuthenticated, committeeController.committeePut);
 app.delete('/committee/:id', committeeController.committeeDelete);
+
+//general
+app.get('/committees', committeeController.committeesGet);
+app.get('/committees/user/:id', committeeController.committeeUserGet);
+
 
 
 

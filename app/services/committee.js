@@ -3,6 +3,9 @@ angular.module('MyApp')
     return {
       getCommittees: function() {
         return $http.get('/committees');
+      },
+      getUsersCommittees: function(id) {
+        return $http.get('/committees/user/' + id);
       }
     };
   });

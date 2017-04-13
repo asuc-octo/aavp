@@ -15,6 +15,7 @@ gulp.task('angular', function() {
     'app/app.js',
     'app/controllers/*.js',
     'app/controllers/admin/*.js',
+    'app/controllers/poster/*.js',
     'app/services/*.js'
   ])
     .pipe(concat('application.js'))

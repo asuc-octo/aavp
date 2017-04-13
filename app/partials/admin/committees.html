@@ -1,5 +1,5 @@
-<div class="container">
-	<div class="panel panel-founder">
+<div class="container-fluid">
+	<div class="panel panel-berkeley">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Add a Committee</h3>
 	  </div>
@@ -23,7 +23,7 @@
 	      </div>
 	      <div class="form-group">
 		    	<label for="textArea">Description</label>
-	        <textarea class="form-control" rows="3" id="textArea" ng-model="newCommittee.description"></textarea>
+	        <textarea class="form-control" rows="5" id="textArea" ng-model="newCommittee.description"></textarea>
 	        <span class="help-block">Put a short description of the committee and it's responsibilities here.</span>
 	    	</div>
 	    	<div class="form-group">
@@ -32,7 +32,7 @@
 	    </form>
 		</div>
 	</div>
-	<div class="panel panel-founder">
+	<div class="panel panel-berkeley">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Manage Committees</h3>
 	  </div>
@@ -77,12 +77,12 @@
 					</div>
 					<div class="form-group">
 						<label for="textArea">Description</label>
-					  <textarea class="form-control" rows="3" id="textArea" ng-model="$ctrl.committee.description"></textarea>
+					  <textarea class="form-control" rows="5" id="textArea" ng-model="$ctrl.committee.description"></textarea>
 					  <span class="help-block">Put a short description of the committee and it's responsibilities here.</span>
 					</div>
 	    </div>
 	    <div class="modal-footer">
-	    		<button type="submit" class="btn btn-founder">Save Changes</button>
+	    		<button type="submit" class="btn btn-berkeley">Save Changes</button>
 	        <button class="btn btn-golden" type="button" ng-click="$ctrl.delete()">Delete</button>
 	        <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
 	    </div>

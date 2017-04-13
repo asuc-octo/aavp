@@ -175,9 +175,6 @@ exports.accountPut = function(req, res, next) {
     } else {
       user.email = req.body.email;
       user.name = req.body.name;
-      user.gender = req.body.gender;
-      user.location = req.body.location;
-      user.website = req.body.website;
     }
     user.save(function(err) {
       if ('password' in req.body) {
@@ -373,9 +370,6 @@ exports.authGoogle = function(req, res) {
           }
           user = req.user;
           user.name = user.name || profile.name;
-          user.gender = profile.gender;
-          user.picture = user.picture || profile.picture.replace('sz=50', 'sz=200');
-          user.location = user.location || profile.location;
           user.google = profile.sub;
           user.save(function() {
             res.send({ token: generateToken(user), user: user });
@@ -391,9 +385,6 @@ exports.authGoogle = function(req, res) {
           user = new User({
             name: profile.name,
             email: profile.email,
-            gender: profile.gender,
-            picture: profile.picture.replace('sz=50', 'sz=200'),
-            location: profile.location,
             google: profile.sub
           });
           user.save(function(err) {
